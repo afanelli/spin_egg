@@ -2,320 +2,204 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Spin Egg helper</title>
-<style>
+  <title>Spin Egg Helper</title>
+  <style>
 body { font-family: Arial, sans-serif; text-align: center; margin: 40px 10px; background-color: #1e1e1e; color: #e0e0e0; }
-input, button { padding: 8px; border-radius: 4px; border: 1px solid #555; background-color: #2c2c2c; color: #e0e0e0; }
-button { margin-left: 6px; cursor: pointer; transition: background-color .2s; }
-button:hover { background-color: #0078d4; }
+input { padding: 8px; border-radius: 4px; border: 1px solid #555; background-color: #2c2c2c; color: #e0e0e0; width: 100%; box-sizing: border-box; }
 .pokemon-block { display: inline-block; margin: 10px; padding: 15px; background-color: #2a2a2a; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,.5); max-width: 300px; }
 img { width: 100%; height: auto; max-width: 120px; margin-top: 10px; }
-.note { color: #ff6666; font-style: italic; margin-top: 10px; }
 .suggestion { cursor: pointer; color: #4fa3ff; text-decoration: underline; }
 .suggestion:hover { color: #82c7ff; }
-table { border-collapse: collapse; margin: 20px auto; width: 80%; max-width: 900px; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
+table { border-collapse: collapse; margin: 20px auto; width: 80%; max-width: 900px; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,.5); }
 th, td { border: 1px solid #444; padding: 8px 10px; text-align: center; }
 th { background-color: #333; color: #fff; }
 tr:hover { background-color: #3b3b3b; }
-h1, h2 { color: #4fa3ff; }
+h1 { color: #4fa3ff; }
+.bst-title { color: #4fa3ff; margin-bottom: 5px; font-size: 24px; }
+.bst-subtitle { color: #4fa3ff; margin-bottom: 15px; font-size: 16px; }
+.work-progress { color: #f5c542; font-style: italic; font-weight: 600; background-color: rgba(245,197,66,0.1); padding: 2px 6px; border-radius: 6px; }
 header { margin-bottom: 20px; }
 #bstTableDiv { width: 100%; overflow-x: auto; }
-.work-progress { color: #f5c542; font-style: italic; font-weight: 600; background-color: rgba(245,197,66,0.1); padding: 2px 6px; border-radius: 6px; }
+#suggestions { max-height: 150px; overflow-y: auto; border-radius: 4px; position: absolute; top: 100%; left: 0; right: 0; background-color: #2a2a2a; border: 1px solid #555; z-index: 1000; display: none; box-sizing: border-box; }
+#suggestions div { padding: 6px 8px; cursor: pointer; color: #e0e0e0; }
+#suggestions div:hover { background-color: #0078d4; }
+hr { border: 0; height: 1px; background: #444; margin: 30px 0; }
 @media (max-width: 600px) {
   body { font-size: 15px; margin: 20px 5px; }
   input { width: 80%; margin-bottom: 10px; }
-  button { width: 85%; margin: 5px 0; }
   .pokemon-block { width: 90%; display: block; margin: 15px auto; }
   table { width: 100%; font-size: 14px; }
 }
-</style>
+  </style>
 </head>
 <body>
   <header>
     <h1>Spin Egg Helper</h1>
-    <button onclick="showBSTTable()">BEST LIST</button>
   </header>
 
-  <p>Inserisci il nome del tuo Pokémon:</p>
-  <input id="pokemonNameInput" type="text" placeholder="Nome Pokémon">
-  <button onclick="findPrevious()">Cerca</button>
+  <p>Inserisci il nome del tuo Pokémon per cercare il precedente nel pokedex nazionale:</p>
+  <div style="position: relative; display: inline-block; width: 200px;">
+    <input id="pokemonNameInput" type="text" placeholder="Nome Pokémon" autocomplete="off">
+    <div id="suggestions"></div>
+  </div>
 
   <div id="arceusNote"></div>
   <div id="resultDiv" style="margin-top:20px;"></div>
+
+  <hr>
+
+  <div id="bstTitleContainer">
+    <h2 class="bst-title">Best pokemon list <span class="work-progress">work in progress</span></h2>
+    <h3 class="bst-subtitle">Lista Pokémon base con BST ≤ 500 e BST precedente ≥ 580</h3>
+  </div>
+
   <div id="bstTableDiv"></div>
 
   <script>
-    // --- Inserire qui direttamente il JSON filtrato ---
-    const filteredPokemons = [
-  {
-    "name": "NINCADA",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/290.png",
-    "bst": 266,
-    "prevName": "SLAKING",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png",
-    "prevBST": 670
-  },
-  {
-    "name": "BULBASAUR",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-    "bst": 318,
-    "prevName": "VOLCANION",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/721.png",
-    "prevBST": 600
-  },
-  {
-    "name": "CHIKORITA",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png",
-    "bst": 318,
-    "prevName": "MEW",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
-    "prevBST": 600
-  },
-  {
-    "name": "TREECKO",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/252.png",
-    "bst": 310,
-    "prevName": "CELEBI",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png",
-    "prevBST": 600
-  },
-  {
-    "name": "BELDUM",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/374.png",
-    "bst": 300,
-    "prevName": "SALAMENCE",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/373.png",
-    "prevBST": 600
-  },
-  {
-    "name": "TURTWIG",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png",
-    "bst": 318,
-    "prevName": "DEOXYS-NORMAL",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/386.png",
-    "prevBST": 600
-  },
-  {
-    "name": "MUNCHLAX",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/446.png",
-    "bst": 390,
-    "prevName": "GARCHOMP",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png",
-    "prevBST": 600
-  },
-  {
-    "name": "SNIVY",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png",
-    "bst": 308,
-    "prevName": "VICTINI",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/494.png",
-    "prevBST": 600
-  },
-  {
-    "name": "LARVESTA",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/636.png",
-    "bst": 360,
-    "prevName": "HYDREIGON",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png",
-    "prevBST": 600
-  },
-  {
-    "name": "CHESPIN",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/650.png",
-    "bst": 313,
-    "prevName": "GENESECT",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649.png",
-    "prevBST": 600
-  },
-  {
-    "name": "KLEFKI",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png",
-    "bst": 470,
-    "prevName": "GOODRA",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png",
-    "prevBST": 600
-  },
-  {
-    "name": "DRATINI",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png",
-    "bst": 300,
-    "prevName": "MOLTRES",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png",
-    "prevBST": 580
-  },
-  {
-    "name": "LARVITAR",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png",
-    "bst": 300,
-    "prevName": "SUICUNE",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/245.png",
-    "prevBST": 580
-  },
-  {
-    "name": "PHIONE",
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/489.png",
-    "bst": 480,
-    "prevName": "CRESSELIA",
-    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/488.png",
-    "prevBST": 580
+  const filteredPokemons = [{"name":"NINCADA","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/290.png","bst":266,"prevName":"SLAKING","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png","prevBST":670},{"name":"BULBASAUR","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png","bst":318,"prevName":"VOLCANION","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/721.png","prevBST":600},{"name":"CHIKORITA","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png","bst":318,"prevName":"MEW","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png","prevBST":600},{"name":"TREECKO","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/252.png","bst":310,"prevName":"CELEBI","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png","prevBST":600},{"name":"BELDUM","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/374.png","bst":300,"prevName":"SALAMENCE","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/373.png","prevBST":600},{"name":"TURTWIG","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png","bst":318,"prevName":"DEOXYS-NORMAL","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/386.png","prevBST":600},{"name":"MUNCHLAX","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/446.png","bst":390,"prevName":"GARCHOMP","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png","prevBST":600},{"name":"SNIVY","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png","bst":308,"prevName":"VICTINI","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/494.png","prevBST":600},{"name":"LARVESTA","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/636.png","bst":360,"prevName":"HYDREIGON","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png","prevBST":600},{"name":"CHESPIN","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/650.png","bst":313,"prevName":"GENESECT","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649.png","prevBST":600},{"name":"KLEFKI","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png","bst":470,"prevName":"GOODRA","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png","prevBST":600},{"name":"DRATINI","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png","bst":300,"prevName":"MOLTRES","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png","prevBST":580},{"name":"LARVITAR","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png","bst":300,"prevName":"SUICUNE","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/245.png","prevBST":580},{"name":"PHIONE","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/489.png","bst":480,"prevName":"CRESSELIA","prevImage":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/488.png","prevBST":580}];
+
+let allPokemonNames = [];
+
+const pokemonAlias = {
+  "deoxys": "deoxys-normal",
+  "wormadam": "wormadam-plant",
+  "aegislash": "aegislash-shield",
+  "basculin": "basculin-red-striped",
+  "giratina": "giratina-altered",
+  "shaymin": "shaymin-land",
+  "tornadus": "tornadus-incarnate",
+  "thundurus": "thundurus-incarnate",
+  "landorus": "landorus-incarnate",
+  "keldeo": "keldeo-ordinary",
+  "meloetta": "meloetta-aria",
+  "meowstic": "meowstic-male",
+  "pumpkaboo": "pumpkaboo-average",
+  "gourgeist": "gourgeist-average"
+};
+
+async function loadAllPokemonNames() {
+  const generations = [1,2,3,4,5,6];
+  const allSpecies = [];
+  for(const gen of generations){
+    const res = await fetch(`https://pokeapi.co/api/v2/generation/${gen}/`);
+    const data = await res.json();
+    allSpecies.push(...data.pokemon_species.map(p=>p.name));
   }
-];
+  allPokemonNames = allSpecies.sort();
+}
+loadAllPokemonNames();
 
-    let allPokemonNames = [];
+const suggestionsDiv = document.getElementById("suggestions");
 
-    const pokemonAlias = {
-      "aegislash": "aegislash-shield",
-      "zygarde": "zygarde-50",
-      "deoxys": "deoxys-normal",
-      "basculin": "basculin-red-striped",
-      "giratina": "giratina-altered",
-      "shaymin": "shaymin-land",
-      "tornadus": "tornadus-incarnate",
-      "thundurus": "thundurus-incarnate",
-      "landorus": "landorus-incarnate",
-      "keldeo": "keldeo-ordinary",
-      "meloetta": "meloetta-aria",
-      "meowstic": "meowstic-male",
-      "pumpkaboo": "pumpkaboo-average",
-      "gourgeist": "gourgeist-average",
-      "oricorio": "oricorio-baile",
-      "lycanroc": "lycanroc-midday",
-      "wishiwashi": "wishiwashi-solo",
-      "minior": "minior-red-meteor",
-      "mimikyu": "mimikyu-disguised",
-      "eiscue": "eiscue-ice",
-      "indeedee": "indeedee-male",
-      "urshifu": "urshifu-single-strike",
-      "zacian": "zacian-hero",
-      "zamazenta": "zamazenta-hero"
-    };
+document.getElementById("pokemonNameInput").addEventListener("input", function(){
+  const inputVal = this.value.trim().toLowerCase();
+  if(!inputVal){ suggestionsDiv.style.display="none"; return; }
 
-    async function loadAllPokemonNames() {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=2000');
-      const data = await response.json();
-      allPokemonNames = data.results.map(p => p.name);
+  const matched = allPokemonNames
+    .filter(name => name.startsWith(inputVal) && !name.includes("-mega") && !name.includes("-gmax"))
+    .slice(0,10);
+
+  if(matched.length === 0){ suggestionsDiv.style.display="none"; return; }
+
+  suggestionsDiv.innerHTML = matched.map(name=>`<div onclick="selectSuggestion('${name}')">${name}</div>`).join("");
+  suggestionsDiv.style.display="block";
+});
+
+function selectSuggestion(name){
+  document.getElementById("pokemonNameInput").value = name;
+  suggestionsDiv.style.display="none";
+  findPrevious(name);
+}
+
+document.addEventListener("click", function(e){
+  if(!document.getElementById("pokemonNameInput").contains(e.target) && !suggestionsDiv.contains(e.target)){
+    suggestionsDiv.style.display="none";
+  }
+});
+
+async function findPrevious(nameOverride){
+  const pokemonName = (nameOverride || document.getElementById("pokemonNameInput").value).trim().toLowerCase();
+  const result = document.getElementById("resultDiv");
+  const arceusNoteDiv = document.getElementById("arceusNote");
+  arceusNoteDiv.innerHTML="";
+
+  if(!pokemonName){ result.innerHTML="Inserisci un nome Pokémon valido!"; return; }
+
+  try{
+    const fetchName = pokemonAlias[pokemonName] || pokemonName;
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${fetchName}`);
+    if(!response.ok) throw new Error("Pokémon non trovato");
+    const data = await response.json();
+
+    let previousId = data.id===1?721:data.id-1;
+    let prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${previousId}`);
+    if(!prevResponse.ok) throw new Error("Errore nella richiesta del precedente Pokémon");
+    let prevData = await prevResponse.json();
+
+    if(prevData.name.toLowerCase()==="arceus"){
+      arceusNoteDiv.innerHTML="<div class='pokemon-block' style='background-color:#3a3a3a; padding:10px;'>Il Pokémon precedente sarebbe Arceus, ma attualmente non presente.</div>";
+      let newPrevId = previousId-1;
+      prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${newPrevId}`);
+      prevData = await prevResponse.json();
     }
 
-    loadAllPokemonNames();
+    result.innerHTML=`
+      <div class="pokemon-block">
+        <h2>Pokémon cercato:</h2>
+        <h3>#${data.id} ${data.name.toUpperCase()}</h3>
+        <img src="${data.sprites.front_default}" alt="${data.name}">
+      </div>
 
-    document.getElementById("pokemonNameInput").addEventListener("keypress", function(event) {
-      if (event.key === "Enter") findPrevious();
-    });
-
-    function levenshtein(a, b) {
-      const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
-      for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
-
-      for (let i = 1; i <= b.length; i++) {
-        for (let j = 1; j <= a.length; j++) {
-          if (b[i-1] === a[j-1]) matrix[i][j] = matrix[i-1][j-1];
-          else matrix[i][j] = Math.min(
-            matrix[i-1][j-1] + 1,
-            matrix[i][j-1] + 1,
-            matrix[i-1][j] + 1
-          );
-        }
-      }
-      return matrix[b.length][a.length];
+      <div class="pokemon-block">
+        <h2>Pokémon precedente:</h2>
+        <h3>#${prevData.id} ${prevData.name.toUpperCase()}</h3>
+        <img src="${prevData.sprites.front_default}" alt="${prevData.name}">
+      </div>
+    `;
+  }catch(error){
+    const suggestions = allPokemonNames.filter(n=>n.startsWith(pokemonName));
+    if(suggestions.length>0){
+      const suggestionLinks = suggestions.map(s=>`<span class="suggestion" onclick="findPrevious('${s}')">${s}</span>`).join(", ");
+      result.innerHTML=`Impossibile trovare il Pokémon. Forse volevi dire: ${suggestionLinks}?`;
+    }else{
+      result.innerHTML="Impossibile trovare il Pokémon. Controlla il nome!";
     }
+  }
+}
 
-    function suggestNames(inputName, maxDistance = 3) {
-      const suggestions = [];
-      for (const name of allPokemonNames) {
-        if (inputName.length <= 3) {
-          if (name.startsWith(inputName)) suggestions.push(name);
-        } else {
-          const distance = levenshtein(inputName, name);
-          if (distance <= maxDistance) suggestions.push(name);
-        }
-      }
-      return suggestions;
-    }
+function showBSTTable(){
+  const tableDiv = document.getElementById("bstTableDiv");
+  if(!filteredPokemons || filteredPokemons.length===0){
+    tableDiv.innerHTML="Nessun Pokémon disponibile!";
+    return;
+  }
 
-    async function findPrevious(nameOverride) {
-      const pokemonName = (nameOverride || document.getElementById("pokemonNameInput").value).trim().toLowerCase();
-      const result = document.getElementById("resultDiv");
-      const arceusNoteDiv = document.getElementById("arceusNote");
-      arceusNoteDiv.innerHTML = "";
+  let html=`<table>
+    <tr>
+      <th>Pokémon</th>
+      <th>img</th>
+      <th>BST</th>
+      <th>Precedente</th>
+      <th>img</th>
+      <th>BST</th>
+    </tr>`;
 
-      if (!pokemonName) {
-        result.innerHTML = "Inserisci un nome Pokémon valido!";
-        return;
-      }
+  filteredPokemons.forEach(p=>{
+    html+=`<tr>
+      <td>${p.name}</td>
+      <td><img src="${p.image}" alt="${p.name}" width="64"></td>
+      <td>${p.bst}</td>
+      <td>${p.prevName}</td>
+      <td><img src="${p.prevImage}" alt="${p.prevName}" width="64"></td>
+      <td>${p.prevBST}</td>
+    </tr>`;
+  });
 
-      try {
-        const fetchName = pokemonAlias[pokemonName] || pokemonName;
+  html+=`</table>`;
+  tableDiv.innerHTML=html;
+}
 
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${fetchName}`);
-        if (!response.ok) throw new Error("Pokémon non trovato");
-        const data = await response.json();
-
-        let previousId = data.id === 1 ? 721 : data.id - 1;
-        let prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${previousId}`);
-        if (!prevResponse.ok) throw new Error("Errore nella richiesta del precedente Pokémon");
-        let prevData = await prevResponse.json();
-
-        if (prevData.name.toLowerCase() === "arceus") {
-          arceusNoteDiv.innerHTML = "<div class='note'>Il Pokémon precedente sarebbe Arceus, ma attualmente non presente.</div>";
-          prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/721`);
-          prevData = await prevResponse.json();
-        }
-
-        result.innerHTML = `
-          <div class="pokemon-block">
-            <h2>Pokémon cercato:</h2>
-            <h3>#${data.id} ${data.name.toUpperCase()}</h3>
-            <img src="${data.sprites.front_default}" alt="${data.name}">
-          </div>
-
-          <div class="pokemon-block">
-            <h2>Pokémon precedente:</h2>
-            <h3>#${prevData.id} ${prevData.name.toUpperCase()}</h3>
-            <img src="${prevData.sprites.front_default}" alt="${prevData.name}">
-          </div>
-        `;
-      } catch (error) {
-        const suggestions = suggestNames(pokemonName);
-        if (suggestions.length > 0) {
-          const suggestionLinks = suggestions
-            .map(s => `<span class="suggestion" onclick="findPrevious('${s}')">${s}</span>`)
-            .join(", ");
-          result.innerHTML = `Impossibile trovare il Pokémon. Forse volevi dire: ${suggestionLinks}?`;
-        } else {
-          result.innerHTML = "Impossibile trovare il Pokémon. Controlla il nome!";
-        }
-      }
-    }
-
-    function showBSTTable() {
-      const tableDiv = document.getElementById("bstTableDiv");
-      if (!filteredPokemons || filteredPokemons.length === 0) {
-        tableDiv.innerHTML = "Nessun Pokémon disponibile!";
-        return;
-      }
-      let html = `<h2>Lista Pokémon con BST ≤ 500 e BST precedente ≥ 580 <span class="work-progress">[work in progress]</span></h2>
-      <table>
-        <tr>
-          <th>Pokémon</th>
-          <th>img</th>
-          <th>BST</th>
-          <th>Precedente</th>
-          <th>img</th>
-          <th>BST</th>
-        </tr>`;
-      filteredPokemons.forEach(p => {
-        html += `<tr>
-          <td>${p.name}</td>
-          <td><img src="${p.image}" alt="${p.name}" width="64"></td>
-          <td>${p.bst}</td>
-          <td>${p.prevName}</td>
-          <td><img src="${p.prevImage}" alt="${p.prevName}" width="64"></td>
-          <td>${p.prevBST}</td>
-        </tr>`;
-      });
-      html += `</table>`;
-      tableDiv.innerHTML = html;
-    }
+showBSTTable();
   </script>
 </body>
 </html>
