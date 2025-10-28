@@ -12,45 +12,42 @@
 </head>
 <body>
   <h1>Trova il Pokémon precedente</h1>
-  <p>Inserisci un nome Pokémon (es. "pikachu"):</p>
-  <input id="pokemonName" type="text" placeholder="Nome Pokémon">
-  <button onclick="trovaPrecedente()">Cerca</button>
+  <p>Inserisci un nome Pokémon:</p>
+  <input id="pokemonNameInput" type="text" placeholder="Nome Pokémon">
+  <button onclick="findPrevious()">Cerca</button>
   
-  <div id="risultato" style="margin-top:20px;"></div>
+  <div id="resultDiv" style="margin-top:20px;"></div>
   
   <script>
-    async function trovaPrecedente() {
-      const name = document.getElementById("pokemonName").value.trim().toLowerCase();
-      const risultatoDiv = document.getElementById("risultato");
+    async function findPrevious() {
+      const pokemonName = document.getElementById("pokemonNameInput").value.trim().toLowerCase();
+      const result = document.getElementById("resultDiv");
 
-      if (!name) {
-        risultatoDiv.innerHTML = "Inserisci un nome Pokémon valido!";
+      if (!pokemonName) {
+        result.innerHTML = "Inserisci un nome Pokémon valido!";
         return;
       }
 
       try {
-        // 1️⃣ Cerca il Pokémon per nome
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        // Fetch Pokémon data by name
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
         if (!response.ok) throw new Error("Pokémon non trovato");
         const data = await response.json();
 
         const id = data.id;
-        // 2️⃣ Trova il Pokémon precedente (con wrapping 1 → 721)
-        const prevId = (id === 1) ? 721 : id - 1;
+        const previousId = (id === 1) ? 721 : id - 1;
 
-        // 3️⃣ Recupera i dati del Pokémon precedente
-        const prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${prevId}`);
+        const prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${previousId}`);
         if (!prevResponse.ok) throw new Error("Errore nella richiesta del precedente Pokémon");
         const prevData = await prevResponse.json();
 
-        // 4️⃣ Mostra il risultato
-        risultatoDiv.innerHTML = `
+        result.innerHTML = `
           <h2>Pokémon precedente di ${data.name.toUpperCase()}:</h2>
           <h3>#${prevData.id} ${prevData.name.toUpperCase()}</h3>
           <img src="${prevData.sprites.front_default}" alt="${prevData.name}">
         `;
       } catch (error) {
-        risultatoDiv.innerHTML = "Impossibile trovare il Pokémon. Controlla il nome!";
+        result.innerHTML = "Impossibile trovare il Pokémon. Controlla il nome!";
       }
     }
   </script>
