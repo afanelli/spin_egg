@@ -8,6 +8,7 @@
     input { padding: 8px; width: 150px; }
     button { padding: 8px 12px; margin-left: 8px; }
     img { margin-top: 10px; }
+    .suggestion { cursor: pointer; color: blue; text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -19,8 +20,46 @@
   <div id="resultDiv" style="margin-top:20px;"></div>
   
   <script>
-    async function findPrevious() {
-      const pokemonName = document.getElementById("pokemonNameInput").value.trim().toLowerCase();
+    let allPokemonNames = [];
+
+    // Load all Pokémon names once
+    async function loadAllPokemonNames() {
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
+      const data = await response.json();
+      allPokemonNames = data.results.map(p => p.name);
+    }
+
+    loadAllPokemonNames();
+
+    // Levenshtein distance
+    function levenshtein(a, b) {
+      const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
+      for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          if (b[i-1] === a[j-1]) matrix[i][j] = matrix[i-1][j-1];
+          else matrix[i][j] = Math.min(
+            matrix[i-1][j-1] + 1,
+            matrix[i][j-1] + 1,
+            matrix[i-1][j] + 1
+          );
+        }
+      }
+      return matrix[b.length][a.length];
+    }
+
+    function suggestNames(inputName, maxDistance = 3) {
+      const suggestions = [];
+      for (const name of allPokemonNames) {
+        const distance = levenshtein(inputName, name);
+        if (distance <= maxDistance) suggestions.push(name);
+      }
+      return suggestions;
+    }
+
+    async function findPrevious(nameOverride) {
+      const pokemonName = (nameOverride || document.getElementById("pokemonNameInput").value).trim().toLowerCase();
       const result = document.getElementById("resultDiv");
 
       if (!pokemonName) {
@@ -29,7 +68,6 @@
       }
 
       try {
-        // Fetch Pokémon data by name
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
         if (!response.ok) throw new Error("Pokémon non trovato");
         const data = await response.json();
@@ -47,7 +85,15 @@
           <img src="${prevData.sprites.front_default}" alt="${prevData.name}">
         `;
       } catch (error) {
-        result.innerHTML = "Impossibile trovare il Pokémon. Controlla il nome!";
+        const suggestions = suggestNames(pokemonName);
+        if (suggestions.length > 0) {
+          const suggestionLinks = suggestions
+            .map(s => `<span class="suggestion" onclick="findPrevious('${s}')">${s}</span>`)
+            .join(", ");
+          result.innerHTML = `Impossibile trovare il Pokémon. Forse volevi dire: ${suggestionLinks}?`;
+        } else {
+          result.innerHTML = "Impossibile trovare il Pokémon. Controlla il nome!";
+        }
       }
     }
   </script>
