@@ -1,0 +1,114 @@
+[
+  {
+    "name": "NINCADA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/290.png",
+    "bst": 266,
+    "prevName": "SLAKING",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png",
+    "prevBST": 670
+  },
+  {
+    "name": "BULBASAUR",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    "bst": 318,
+    "prevName": "VOLCANION",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/721.png",
+    "prevBST": 600
+  },
+  {
+    "name": "CHIKORITA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png",
+    "bst": 318,
+    "prevName": "MEW",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
+    "prevBST": 600
+  },
+  {
+    "name": "TREECKO",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/252.png",
+    "bst": 310,
+    "prevName": "CELEBI",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png",
+    "prevBST": 600
+  },
+  {
+    "name": "BELDUM",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/374.png",
+    "bst": 300,
+    "prevName": "SALAMENCE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/373.png",
+    "prevBST": 600
+  },
+  {
+    "name": "TURTWIG",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png",
+    "bst": 318,
+    "prevName": "DEOXYS-NORMAL",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/386.png",
+    "prevBST": 600
+  },
+  {
+    "name": "MUNCHLAX",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/446.png",
+    "bst": 390,
+    "prevName": "GARCHOMP",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png",
+    "prevBST": 600
+  },
+  {
+    "name": "SNIVY",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png",
+    "bst": 308,
+    "prevName": "VICTINI",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/494.png",
+    "prevBST": 600
+  },
+  {
+    "name": "LARVESTA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/636.png",
+    "bst": 360,
+    "prevName": "HYDREIGON",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png",
+    "prevBST": 600
+  },
+  {
+    "name": "CHESPIN",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/650.png",
+    "bst": 313,
+    "prevName": "GENESECT",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649.png",
+    "prevBST": 600
+  },
+  {
+    "name": "KLEFKI",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png",
+    "bst": 470,
+    "prevName": "GOODRA",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png",
+    "prevBST": 600
+  },
+  {
+    "name": "DRATINI",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png",
+    "bst": 300,
+    "prevName": "MOLTRES",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png",
+    "prevBST": 580
+  },
+  {
+    "name": "LARVITAR",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png",
+    "bst": 300,
+    "prevName": "SUICUNE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/245.png",
+    "prevBST": 580
+  },
+  {
+    "name": "PHIONE",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/489.png",
+    "bst": 480,
+    "prevName": "CRESSELIA",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/488.png",
+    "prevBST": 580
+  }
+]

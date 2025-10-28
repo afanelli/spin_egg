@@ -1,0 +1,429 @@
+[
+  {
+    "name": "MEW",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
+    "prevName": "MEWTWO",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png",
+    "prevBST": 680
+  },
+  {
+    "name": "HO-OH",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/250.png",
+    "prevName": "LUGIA",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/249.png",
+    "prevBST": 680
+  },
+  {
+    "name": "CELEBI",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png",
+    "prevName": "HO-OH",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/250.png",
+    "prevBST": 680
+  },
+  {
+    "name": "JIRACHI",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/385.png",
+    "prevName": "RAYQUAZA",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png",
+    "prevBST": 680
+  },
+  {
+    "name": "PALKIA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/484.png",
+    "prevName": "DIALGA",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/483.png",
+    "prevBST": 680
+  },
+  {
+    "name": "HEATRAN",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/485.png",
+    "prevName": "PALKIA",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/484.png",
+    "prevBST": 680
+  },
+  {
+    "name": "CRESSELIA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/488.png",
+    "prevName": "GIRATINA-ALTERED",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/487.png",
+    "prevBST": 680
+  },
+  {
+    "name": "ZEKROM",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/644.png",
+    "prevName": "RESHIRAM",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/643.png",
+    "prevBST": 680
+  },
+  {
+    "name": "LANDORUS-INCARNATE",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/645.png",
+    "prevName": "ZEKROM",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/644.png",
+    "prevBST": 680
+  },
+  {
+    "name": "YVELTAL",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/717.png",
+    "prevName": "XERNEAS",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/716.png",
+    "prevBST": 680
+  },
+  {
+    "name": "ZYGARDE-50",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/718.png",
+    "prevName": "YVELTAL",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/717.png",
+    "prevBST": 680
+  },
+  {
+    "name": "NINCADA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/290.png",
+    "prevName": "SLAKING",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png",
+    "prevBST": 670
+  },
+  {
+    "name": "GROUDON",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/383.png",
+    "prevName": "KYOGRE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/382.png",
+    "prevBST": 670
+  },
+  {
+    "name": "RAYQUAZA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png",
+    "prevName": "GROUDON",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/383.png",
+    "prevBST": 670
+  },
+  {
+    "name": "GIRATINA-ALTERED",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/487.png",
+    "prevName": "REGIGIGAS",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/486.png",
+    "prevBST": 670
+  },
+  {
+    "name": "KELDEO-ORDINARY",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/647.png",
+    "prevName": "KYUREM",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/646.png",
+    "prevBST": 660
+  },
+  {
+    "name": "BULBASAUR",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    "prevName": "VOLCANION",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/721.png",
+    "prevBST": 600
+  },
+  {
+    "name": "MEWTWO",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png",
+    "prevName": "DRAGONITE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png",
+    "prevBST": 600
+  },
+  {
+    "name": "CHIKORITA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png",
+    "prevName": "MEW",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
+    "prevBST": 600
+  },
+  {
+    "name": "LUGIA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/249.png",
+    "prevName": "TYRANITAR",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/248.png",
+    "prevBST": 600
+  },
+  {
+    "name": "TREECKO",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/252.png",
+    "prevName": "CELEBI",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png",
+    "prevBST": 600
+  },
+  {
+    "name": "BELDUM",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/374.png",
+    "prevName": "SALAMENCE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/373.png",
+    "prevBST": 600
+  },
+  {
+    "name": "REGIROCK",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/377.png",
+    "prevName": "METAGROSS",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/376.png",
+    "prevBST": 600
+  },
+  {
+    "name": "LATIOS",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/381.png",
+    "prevName": "LATIAS",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/380.png",
+    "prevBST": 600
+  },
+  {
+    "name": "KYOGRE",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/382.png",
+    "prevName": "LATIOS",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/381.png",
+    "prevBST": 600
+  },
+  {
+    "name": "DEOXYS-NORMAL",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/386.png",
+    "prevName": "JIRACHI",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/385.png",
+    "prevBST": 600
+  },
+  {
+    "name": "TURTWIG",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png",
+    "prevName": "DEOXYS-NORMAL",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/386.png",
+    "prevBST": 600
+  },
+  {
+    "name": "MUNCHLAX",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/446.png",
+    "prevName": "GARCHOMP",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png",
+    "prevBST": 600
+  },
+  {
+    "name": "REGIGIGAS",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/486.png",
+    "prevName": "HEATRAN",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/485.png",
+    "prevBST": 600
+  },
+  {
+    "name": "DARKRAI",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/491.png",
+    "prevName": "MANAPHY",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/490.png",
+    "prevBST": 600
+  },
+  {
+    "name": "SHAYMIN-LAND",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/492.png",
+    "prevName": "DARKRAI",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/491.png",
+    "prevBST": 600
+  },
+  {
+    "name": "ARCEUS",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493.png",
+    "prevName": "SHAYMIN-LAND",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/492.png",
+    "prevBST": 600
+  },
+  {
+    "name": "VICTINI",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/494.png",
+    "prevName": "VOLCANION",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/721.png",
+    "prevBST": 600
+  },
+  {
+    "name": "SNIVY",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png",
+    "prevName": "VICTINI",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/494.png",
+    "prevBST": 600
+  },
+  {
+    "name": "LARVESTA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/636.png",
+    "prevName": "HYDREIGON",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png",
+    "prevBST": 600
+  },
+  {
+    "name": "KYUREM",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/646.png",
+    "prevName": "LANDORUS-INCARNATE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/645.png",
+    "prevBST": 600
+  },
+  {
+    "name": "GENESECT",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649.png",
+    "prevName": "MELOETTA-ARIA",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/648.png",
+    "prevBST": 600
+  },
+  {
+    "name": "CHESPIN",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/650.png",
+    "prevName": "GENESECT",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649.png",
+    "prevBST": 600
+  },
+  {
+    "name": "KLEFKI",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png",
+    "prevName": "GOODRA",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png",
+    "prevBST": 600
+  },
+  {
+    "name": "DIANCIE",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/719.png",
+    "prevName": "ZYGARDE-50",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/718.png",
+    "prevBST": 600
+  },
+  {
+    "name": "HOOPA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/720.png",
+    "prevName": "DIANCIE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/719.png",
+    "prevBST": 600
+  },
+  {
+    "name": "VOLCANION",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/721.png",
+    "prevName": "HOOPA",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/720.png",
+    "prevBST": 600
+  },
+  {
+    "name": "ZAPDOS",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png",
+    "prevName": "ARTICUNO",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png",
+    "prevBST": 580
+  },
+  {
+    "name": "MOLTRES",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png",
+    "prevName": "ZAPDOS",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png",
+    "prevBST": 580
+  },
+  {
+    "name": "DRATINI",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png",
+    "prevName": "MOLTRES",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png",
+    "prevBST": 580
+  },
+  {
+    "name": "ENTEI",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/244.png",
+    "prevName": "RAIKOU",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/243.png",
+    "prevBST": 580
+  },
+  {
+    "name": "SUICUNE",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/245.png",
+    "prevName": "ENTEI",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/244.png",
+    "prevBST": 580
+  },
+  {
+    "name": "LARVITAR",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png",
+    "prevName": "SUICUNE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/245.png",
+    "prevBST": 580
+  },
+  {
+    "name": "REGICE",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/378.png",
+    "prevName": "REGIROCK",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/377.png",
+    "prevBST": 580
+  },
+  {
+    "name": "REGISTEEL",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/379.png",
+    "prevName": "REGICE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/378.png",
+    "prevBST": 580
+  },
+  {
+    "name": "LATIAS",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/380.png",
+    "prevName": "REGISTEEL",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/379.png",
+    "prevBST": 580
+  },
+  {
+    "name": "MESPRIT",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/481.png",
+    "prevName": "UXIE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/480.png",
+    "prevBST": 580
+  },
+  {
+    "name": "AZELF",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/482.png",
+    "prevName": "MESPRIT",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/481.png",
+    "prevBST": 580
+  },
+  {
+    "name": "DIALGA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/483.png",
+    "prevName": "AZELF",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/482.png",
+    "prevBST": 580
+  },
+  {
+    "name": "PHIONE",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/489.png",
+    "prevName": "CRESSELIA",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/488.png",
+    "prevBST": 580
+  },
+  {
+    "name": "TERRAKION",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/639.png",
+    "prevName": "COBALION",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/638.png",
+    "prevBST": 580
+  },
+  {
+    "name": "VIRIZION",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/640.png",
+    "prevName": "TERRAKION",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/639.png",
+    "prevBST": 580
+  },
+  {
+    "name": "TORNADUS-INCARNATE",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/641.png",
+    "prevName": "VIRIZION",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/640.png",
+    "prevBST": 580
+  },
+  {
+    "name": "THUNDURUS-INCARNATE",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/642.png",
+    "prevName": "TORNADUS-INCARNATE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/641.png",
+    "prevBST": 580
+  },
+  {
+    "name": "RESHIRAM",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/643.png",
+    "prevName": "THUNDURUS-INCARNATE",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/642.png",
+    "prevBST": 580
+  },
+  {
+    "name": "MELOETTA-ARIA",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/648.png",
+    "prevName": "KELDEO-ORDINARY",
+    "prevImage": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/647.png",
+    "prevBST": 580
+  }
+]
