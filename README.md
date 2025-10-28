@@ -2,6 +2,8 @@
 
 ![Node.js](https://img.shields.io/badge/Node.js-14%2B-green) ![License](https://img.shields.io/badge/License-MIT-blue)
 
+LINK AL TOOL https://afanelli.github.io/spin_egg
+
 Tool di aiuto per lo **Spin Egg**\
 StartAB.it - Clash of Ages [Season 3]
 
