@@ -10,14 +10,18 @@
     img { margin-top: 10px; }
     .suggestion { cursor: pointer; color: blue; text-decoration: underline; }
     .pokemon-block { display: inline-block; margin: 20px; text-align: center; }
+    .note { color: red; font-style: italic; margin: 10px 0 10px 0; } /* spazio più leggero sopra e sotto */
   </style>
 </head>
 <body>
   <h1>Trova il Pokémon precedente</h1>
-  <p>Inserisci il nome del tuo Pokémon:</p>
+  <p>Inserisci un nome Pokémon (es. "pikachu"):</p>
   <input id="pokemonNameInput" type="text" placeholder="Nome Pokémon">
   <button onclick="findPrevious()">Cerca</button>
-  
+
+  <!-- Qui comparirà il messaggio su Arceus, solo quando serve -->
+  <div id="arceusNote"></div>
+
   <div id="resultDiv" style="margin-top:20px;"></div>
   
   <script>
@@ -30,6 +34,13 @@
     }
 
     loadAllPokemonNames();
+
+    // Attiva il tasto Enter per la ricerca
+    document.getElementById("pokemonNameInput").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        findPrevious();
+      }
+    });
 
     function levenshtein(a, b) {
       const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
@@ -64,6 +75,8 @@
     async function findPrevious(nameOverride) {
       const pokemonName = (nameOverride || document.getElementById("pokemonNameInput").value).trim().toLowerCase();
       const result = document.getElementById("resultDiv");
+      const arceusNoteDiv = document.getElementById("arceusNote");
+      arceusNoteDiv.innerHTML = ""; // reset
 
       if (!pokemonName) {
         result.innerHTML = "Inserisci un nome Pokémon valido!";
@@ -77,21 +90,17 @@
         const data = await response.json();
 
         // Calcolo ID precedente (Gen 1–6)
-        let previousId;
-        if (data.id === 1) {
-          previousId = 721; // Bulbasaur -> Volcanion
-        } else {
-          previousId = data.id - 1;
-        }
+        let previousId = data.id === 1 ? 721 : data.id - 1;
 
         // Fetch Pokémon precedente
         let prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${previousId}`);
         if (!prevResponse.ok) throw new Error("Errore nella richiesta del precedente Pokémon");
         let prevData = await prevResponse.json();
 
-        // Se il Pokémon precedente è Arceus, sostituire con Shaymin
+        // Se il Pokémon precedente è Arceus, sostituire con Shaymin e mostrare nota
         if (prevData.name.toLowerCase() === "arceus") {
-          prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/492`);
+          arceusNoteDiv.innerHTML = "<div class='note'>Il Pokémon precedente sarebbe Arceus, ma attualmente non presente.</div>";
+          prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/492`); // Shaymin
           prevData = await prevResponse.json();
         }
 
