@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Spin Egg Helper</title>
+  <title>Spin Egg helper</title>
   <style>
     body { font-family: Arial; text-align: center; margin-top: 50px; }
     input { padding: 8px; width: 150px; }
@@ -10,16 +10,16 @@
     img { margin-top: 10px; }
     .suggestion { cursor: pointer; color: blue; text-decoration: underline; }
     .pokemon-block { display: inline-block; margin: 20px; text-align: center; }
-    .note { color: red; font-style: italic; margin: 10px 0 10px 0; } /* spazio più leggero sopra e sotto */
+    .note { color: red; font-style: italic; margin: 10px 0 10px 0; }
   </style>
 </head>
 <body>
   <h1>Trova il Pokémon precedente</h1>
-  <p>Inserisci il nome del tuo Pokémon:</p>
+  <p>Inserisci il nome deel tuo Pokémon:</p>
   <input id="pokemonNameInput" type="text" placeholder="Nome Pokémon">
   <button onclick="findPrevious()">Cerca</button>
 
-  <!-- Qui comparirà il messaggio su Arceus, solo quando serve -->
+  <!-- Messaggio su Arceus -->
   <div id="arceusNote"></div>
 
   <div id="resultDiv" style="margin-top:20px;"></div>
@@ -27,15 +27,45 @@
   <script>
     let allPokemonNames = [];
 
+    // Mappa per forme speciali
+    const pokemonAlias = {
+      "aegislash": "aegislash-shield",
+      "zygarde": "zygarde-50",
+      "deoxys": "deoxys-normal",
+      "basculin": "basculin-red-striped",
+      "giratina": "giratina-altered",
+      "shaymin": "shaymin-land",
+      "tornadus": "tornadus-incarnate",
+      "thundurus": "thundurus-incarnate",
+      "landorus": "landorus-incarnate",
+      "keldeo": "keldeo-ordinary",
+      "meloetta": "meloetta-aria",
+      "meowstic": "meowstic-male",
+      "aegislash": "aegislash-shield",
+      "pumpkaboo": "pumpkaboo-average",
+      "gourgeist": "gourgeist-average",
+      "oricorio": "oricorio-baile",
+      "lycanroc": "lycanroc-midday",
+      "wishiwashi": "wishiwashi-solo",
+      "minior": "minior-red-meteor",
+      "mimikyu": "mimikyu-disguised",
+      "toxtricity": "toxtricity-amped",
+      "eiscue": "eiscue-ice",
+      "indeedee": "indeedee-male",
+      "urshifu": "urshifu-single-strike",
+      "zacian": "zacian-hero",
+      "zamazenta": "zamazenta-hero"
+    };
+
     async function loadAllPokemonNames() {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=721');
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=2000');
       const data = await response.json();
       allPokemonNames = data.results.map(p => p.name);
     }
 
     loadAllPokemonNames();
 
-    // Attiva il tasto Enter per la ricerca
+    // Attiva tasto Enter
     document.getElementById("pokemonNameInput").addEventListener("keypress", function(event) {
       if (event.key === "Enter") {
         findPrevious();
@@ -76,7 +106,7 @@
       const pokemonName = (nameOverride || document.getElementById("pokemonNameInput").value).trim().toLowerCase();
       const result = document.getElementById("resultDiv");
       const arceusNoteDiv = document.getElementById("arceusNote");
-      arceusNoteDiv.innerHTML = ""; // reset
+      arceusNoteDiv.innerHTML = "";
 
       if (!pokemonName) {
         result.innerHTML = "Inserisci un nome Pokémon valido!";
@@ -84,23 +114,23 @@
       }
 
       try {
-        // Fetch Pokémon ricercato
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+        // Gestione forme speciali
+        const fetchName = pokemonAlias[pokemonName] || pokemonName;
+
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${fetchName}`);
         if (!response.ok) throw new Error("Pokémon non trovato");
         const data = await response.json();
 
         // Calcolo ID precedente (Gen 1–6)
         let previousId = data.id === 1 ? 721 : data.id - 1;
 
-        // Fetch Pokémon precedente
         let prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${previousId}`);
         if (!prevResponse.ok) throw new Error("Errore nella richiesta del precedente Pokémon");
         let prevData = await prevResponse.json();
 
-        // Se il Pokémon precedente è Arceus, sostituire con Shaymin e mostrare nota
         if (prevData.name.toLowerCase() === "arceus") {
           arceusNoteDiv.innerHTML = "<div class='note'>Il Pokémon precedente sarebbe Arceus, ma attualmente non presente.</div>";
-          prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/492`); // Shaymin
+          prevResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/721`); // Volcanion come ultimo Gen 6
           prevData = await prevResponse.json();
         }
 
