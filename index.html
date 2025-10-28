@@ -3,25 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Spin Egg helper</title>
-    <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #1e1e1e; color: #e0e0e0; }
-    input { padding: 8px; width: 150px; background-color: #2c2c2c; border: 1px solid #555; color: #e0e0e0; border-radius: 4px; }
-    button { padding: 8px 12px; margin-left: 8px; cursor: pointer; background-color: #3a3a3a; color: #fff; border: 1px solid #555; border-radius: 4px; transition: background-color 0.2s ease; }
-    button:hover { background-color: #0078d4; }
-    img { margin-top: 10px; }
-    .pokemon-block { display: inline-block; margin: 20px; text-align: center; background-color: #2a2a2a; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-    .note { color: #ff6666; font-style: italic; margin: 10px 0; }
-    .suggestion { cursor: pointer; color: #4fa3ff; text-decoration: underline; }
-    .suggestion:hover { color: #82c7ff; }
-    table { border-collapse: collapse; margin: 20px auto; width: auto; table-layout: auto; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
-    th, td { border: 1px solid #444; padding: 8px; text-align: center; white-space: nowrap; }
-    th { background-color: #333; color: #fff; }
-    #bstTableDiv { margin-top: 30px; }
-    header { margin-bottom: 20px; }
-    td img { max-width: 64px; height: auto; display: block; margin: 0 auto; }
-    table tr:hover { background-color: #3b3b3b; }
-    h1, h2, h3 { color: #4fa3ff; }
-  </style>
+<style>
+body { font-family: Arial, sans-serif; text-align: center; margin: 40px 10px; background-color: #1e1e1e; color: #e0e0e0; }
+input, button { padding: 8px; border-radius: 4px; border: 1px solid #555; background-color: #2c2c2c; color: #e0e0e0; }
+button { margin-left: 6px; cursor: pointer; transition: background-color .2s; }
+button:hover { background-color: #0078d4; }
+.pokemon-block { display: inline-block; margin: 10px; padding: 15px; background-color: #2a2a2a; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,.5); max-width: 300px; }
+img { width: 100%; height: auto; max-width: 120px; margin-top: 10px; }
+.note { color: #ff6666; font-style: italic; margin-top: 10px; }
+.suggestion { cursor: pointer; color: #4fa3ff; text-decoration: underline; }
+.suggestion:hover { color: #82c7ff; }
+table { border-collapse: collapse; margin: 20px auto; width: 80%; max-width: 900px; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
+th, td { border: 1px solid #444; padding: 8px 10px; text-align: center; }
+th { background-color: #333; color: #fff; }
+tr:hover { background-color: #3b3b3b; }
+h1, h2 { color: #4fa3ff; }
+header { margin-bottom: 20px; }
+#bstTableDiv { width: 100%; overflow-x: auto; }
+.work-progress { color: #f5c542; font-style: italic; font-weight: 600; background-color: rgba(245,197,66,0.1); padding: 2px 6px; border-radius: 6px; }
+@media (max-width: 600px) {
+  body { font-size: 15px; margin: 20px 5px; }
+  input { width: 80%; margin-bottom: 10px; }
+  button { width: 85%; margin: 5px 0; }
+  .pokemon-block { width: 90%; display: block; margin: 15px auto; }
+  table { width: 100%; font-size: 14px; }
+}
+</style>
 </head>
 <body>
   <header>
@@ -282,14 +289,12 @@
 
     function showBSTTable() {
       const tableDiv = document.getElementById("bstTableDiv");
-
       if (!filteredPokemons || filteredPokemons.length === 0) {
         tableDiv.innerHTML = "Nessun Pokémon disponibile!";
         return;
       }
-
-      let html = `<h2>Lista Pokémon con BST ≤ 500 e BST precedente ≥ 580 (work in progress)</h2>
-<table>
+      let html = `<h2>Lista Pokémon con BST ≤ 500 e BST precedente ≥ 580 <span class="work-progress">[work in progress]</span></h2>
+      <table>
         <tr>
           <th>Pokémon</th>
           <th>img</th>
