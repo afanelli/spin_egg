@@ -54,9 +54,7 @@ if (pokemon.bst <= 500 && previousPokemon.bst >= 580) {
 }
 ```
 ## ⚠️ Note
-
 **Arceus** è escluso in quanto non presente, il precedente di Victini sarà Shaymin.\
-Spell check su errori di battitura pokemon
 
 ## 📖 Risorse utili
 [PokéAPI](https://pokeapi.co/) – API ufficiale dei dati Pokémon \
