@@ -10,7 +10,8 @@ StartAB.it - Clash of Ages [Season 3]
 ## ✨ Funzionalità principali
 
 - Scarica i dati dei Pokémon dalla [PokéAPI](https://pokeapi.co/)
-- Dato un Pokemon ricerca il Pokemon precedente nel pokedex nazionale 
+- Dato un Pokemon ricerca il Pokemon precedente nel pokedex nazionale (quello che verrà schiuso dallo spin egg)
+- Dato un pokemon che desideri schiudere dallo spin egg, restituisce il pokemon che devi catturare
 - Tabella in cui vengono mostrati i Pokémon migliori per lo spin egg 
 
 ---
@@ -54,8 +55,8 @@ if (pokemon.bst <= 500 && previousPokemon.bst >= 580) {
 }
 ```
 ## ⚠️ Note
-**Arceus** è escluso in quanto non presente, il precedente di Victini sarà Shaymin.\
+**Arceus** è escluso in quanto non utilizzabile ad oggi nel gioco, il precedente di Victini sarà Shaymin.\
 
 ## 📖 Risorse utili
 [PokéAPI](https://pokeapi.co/) – API ufficiale dei dati Pokémon \
-[Node.js](https://nodejs.org/) – Runtime per eseguire JavaScript fuori dal browser
+[Node.js](https://nodejs.org/) 
